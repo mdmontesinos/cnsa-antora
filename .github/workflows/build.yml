@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     container: node:16-alpine 
     steps:
+      - name: Install git and rsync 📚
+        run: |
+         apk update && apk add git rsync
+           
       - uses: actions/checkout@v2
 
       - name: Install dependencies 
@@ -27,3 +31,11 @@ jobs:
         with:
           name: docs 
           path: docs/
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        if: contains(github.ref,'refs/heads/main') 
+        with:
+         branch: gh-pages 
+         folder: docs 
+           clean: true
