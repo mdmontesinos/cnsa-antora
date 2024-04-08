@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Install rsync 📚
         run: |
-         apt-get update && apt-get install -y rsync
+         apk update && apk add rsync
            
       - uses: actions/checkout@v2
 
