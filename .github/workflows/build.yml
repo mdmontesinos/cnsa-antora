@@ -5,7 +5,10 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  workflow_dispatch: 
+  workflow_dispatch:
+
+permissions: 
+  contents: write
 
 jobs:
   build:
@@ -13,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     container: node:16-alpine 
     steps:
-      - name: Install rsync 📚
+      - name: Install git and rsync 📚
         run: |
-         apk update && apk add rsync
+         apk update && apk add git rsync
            
       - uses: actions/checkout@v2
 
